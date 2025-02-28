@@ -1,131 +1,72 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+/* eslint-disable prettier/prettier */
+import React, { useEffect } from 'react';
+import {Text, View} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import HomeScreen from './screens/Home';
+import Me from './screens/Me';
+//import SplashScreen from 'react-native-splash-screen';
+import LoginScreen from './screens/Login';
+import { AppProvider } from './AppContext';
+import UploadBook from './screens/Upload';
+import PdfViewer from './screens/PdfViewer';
+import Read from './screens/Read';
+//import CategoriesScreen from './screens/Categories';
+import Splash from './screens/SplashScreen';
+import FavoritesScreen from './screens/Biblio';
+import OnBoardScreen from './screens/OnBoarding';
+import OnBoardingItemsScreen from './screens/OnBoardingItems';
+import ProfileScreen from './screens/Profile';
+import DiscoverScreen from './screens/Categories';
+import CollectionDetails from './screens/CollectionDetails';
+import BookDetails from './screens/BookDetails';
+import CategoryDetails from './screens/CategoryDetails';
+import SubscriptionScreen from './screens/SignUp';
+import BuyBookScreen from './screens/BuyBook';
+import PaymentWebViewScreen from './screens/PaymentWebViewScreen';
+import LandingScreen from './screens/Landing';
 
-import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+const Stack = createNativeStackNavigator();
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+const Routes = () => {
+  /*useEffect(() => {
+    setTimeout(()=>{
+      SplashScreen.hide()
+    },1500)
+  })*/
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
+    <AppProvider>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName='login'>
+          <Stack.Screen
+            name="home"
+            component={HomeScreen}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen name="splash" component={Splash} options={{headerShown: false}}/>
+          <Stack.Screen name="intro" component={LandingScreen} options={{headerShown: false}}/>
+          <Stack.Screen name="me" component={Me} options={{headerShown: false}}/>
+          <Stack.Screen name="login" component={LoginScreen} options={{headerShown: false}}/>
+          <Stack.Screen name="upload" component={UploadBook} options={{headerShown: false}}/>
+          <Stack.Screen name="pdfviewer" component={PdfViewer} options={{headerShown: false}}/>
+          <Stack.Screen name="read" component={Read} options={{headerShown: false}}/>
+          {/*<Stack.Screen name="cat" component={CategoriesScreen} options={{headerShown: false}}/>*/}
+          <Stack.Screen name="fav" component={FavoritesScreen} options={{headerShown: false}}/>
+          <Stack.Screen name="onboard" component={OnBoardScreen} options={{headerShown: false}}/>
+          <Stack.Screen name="profile" component={ProfileScreen} options={{headerShown: false}}/>
+          <Stack.Screen name="item" component={DiscoverScreen} options={{headerShown: false}}/>
+          <Stack.Screen name="CollectionDetails" component={CollectionDetails} options={{headerShown: false}}/>
+          <Stack.Screen name="BookDetails" component={BookDetails} options={{headerShown: false}}/>
+          <Stack.Screen name="CategoryDetails" component={CategoryDetails} options={{headerShown: false}}/>
+          <Stack.Screen name="sub" component={SubscriptionScreen} options={{headerShown: false}}/>
+          <Stack.Screen name="buy" component={BuyBookScreen} options={{headerShown: false}}/>
+          <Stack.Screen name="PaymentWebView" component={PaymentWebViewScreen} options={{headerShown: false}}/>
+          
+        </Stack.Navigator>
+      </NavigationContainer>
+    </AppProvider>
+    
   );
-}
-
-function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  /*
-   * To keep the template simple and small we're adding padding to prevent view
-   * from rendering under the System UI.
-   * For bigger apps the reccomendation is to use `react-native-safe-area-context`:
-   * https://github.com/AppAndFlow/react-native-safe-area-context
-   *
-   * You can read more about it here:
-   * https://github.com/react-native-community/discussions-and-proposals/discussions/827
-   */
-  const safePadding = '5%';
-
-  return (
-    <View style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        style={backgroundStyle}>
-        <View style={{paddingRight: safePadding}}>
-          <Header/>
-        </View>
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-            paddingHorizontal: safePadding,
-            paddingBottom: safePadding,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
-
-export default App;
+};
+export default Routes;
