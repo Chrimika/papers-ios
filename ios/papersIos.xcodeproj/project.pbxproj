@@ -11,6 +11,7 @@
 		6DE8DCA290B241F3A3B2F538 /* Pods_papersIos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68CCD84AD7AC4FDF5CA3AD95 /* Pods_papersIos.framework */; };
 		761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		AE4362922D72F5CA00836DFB /* ScreenCaptureBlocker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4362912D72F5CA00836DFB /* ScreenCaptureBlocker.swift */; };
 		AEE1805C2D7273210013BA4A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AEE1805B2D7273210013BA4A /* GoogleService-Info.plist */; };
 		AEE180712D72AD930013BA4A /* Fontisto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AEE1805E2D72AD930013BA4A /* Fontisto.ttf */; };
 		AEE180722D72AD930013BA4A /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AEE1805F2D72AD930013BA4A /* Octicons.ttf */; };
@@ -44,6 +45,8 @@
 		68CCD84AD7AC4FDF5CA3AD95 /* Pods_papersIos.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_papersIos.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = papersIos/AppDelegate.swift; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = papersIos/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		AE4362912D72F5CA00836DFB /* ScreenCaptureBlocker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenCaptureBlocker.swift; sourceTree = "<group>"; };
+		AE4362932D72F61D00836DFB /* ScreenCaptureBlocker-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ScreenCaptureBlocker-Bridging-Header.h"; sourceTree = "<group>"; };
 		AEE1805B2D7273210013BA4A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AEE1805E2D72AD930013BA4A /* Fontisto.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fontisto.ttf; sourceTree = "<group>"; };
 		AEE1805F2D72AD930013BA4A /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Octicons.ttf; sourceTree = "<group>"; };
@@ -111,6 +114,8 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				AE4362912D72F5CA00836DFB /* ScreenCaptureBlocker.swift */,
+				AE4362932D72F61D00836DFB /* ScreenCaptureBlocker-Bridging-Header.h */,
 				AEE1805D2D72AD930013BA4A /* Fonts */,
 				13B07FAE1A68108700A75B9A /* papersIos */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -350,6 +355,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				761780ED2CA45674006654EE /* AppDelegate.swift in Sources */,
+				AE4362922D72F5CA00836DFB /* ScreenCaptureBlocker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,6 +369,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X5BDDCP9UZ;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = papersIos/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
@@ -391,6 +398,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X5BDDCP9UZ;
 				INFOPLIST_FILE = papersIos/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -490,10 +498,7 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
@@ -573,10 +578,7 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;
