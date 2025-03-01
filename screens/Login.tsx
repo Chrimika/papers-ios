@@ -1,12 +1,12 @@
 import { Alert, Button, Image, ImageBackground, Keyboard, KeyboardAvoidingView, Platform, StyleSheet, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
 //import { LoginManager, AccessToken } from 'react-native-fbsdk-next';
-//import auth from '@react-native-firebase/auth';
-//import { GoogleSignin } from '@react-native-google-signin/google-signin';
-//import Toast from 'react-native-root-toast';
+import auth from '@react-native-firebase/auth';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import Toast from 'react-native-root-toast';
 import { useAppContext } from '../AppContext';
-//import firestore from '@react-native-firebase/firestore';
-//import AsyncStorage from '@react-native-async-storage/async-storage';
+import firestore from '@react-native-firebase/firestore';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import MyTextInput from './components/MyTextInput';
 import MyButton from './components/MyButton';
 
@@ -16,11 +16,11 @@ export default function LoginScreen({ navigation }) {
   const { setSharedState, sharedState } = useAppContext();
   const [isKeyboardVisible, setKeyboardVisible] = useState(true);
   const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-/*
+  const [password, setPassword] = useState('')
+
   useEffect(() => {
     GoogleSignin.configure({
-      webClientId: '232506897629-68mv5fdhvuepsqlk00jc0s6ts9ngfd3k.apps.googleusercontent.com',
+      webClientId: '232506897629-hies7jq03t5dv1fmhltpbmd5325s47m5.apps.googleusercontent.com',
     });
 
     // Vérifiez si l'utilisateur est déjà connecté
@@ -33,7 +33,7 @@ export default function LoginScreen({ navigation }) {
     };
 
     checkUser();
-  }, []);*/
+  }, []);
 
   useEffect(() => {
     // Ajouter les écouteurs pour détecter quand le clavier s'affiche ou se cache
@@ -51,7 +51,7 @@ export default function LoginScreen({ navigation }) {
     };
   }, []);
 
-  /*const checkIfUserIsActive = async (uid) => {
+  const checkIfUserIsActive = async (uid) => {
     const userDoc = firestore().collection('users').doc(uid);
     const userSnapshot = await userDoc.get();
     if (userSnapshot.exists) {
@@ -62,10 +62,10 @@ export default function LoginScreen({ navigation }) {
     }
     return false;
     
-  };*/
+  };
 
   
-/*
+
   const EmailLogin = () => {
     if(email!= "" && password!==""){
       auth()
@@ -128,11 +128,11 @@ export default function LoginScreen({ navigation }) {
       Alert.alert('Veillez entrer vos informations de connexion Merci.');
     }
     
-  };*/
+  };
   
 
  
-/*
+
   async function onGoogleButtonPress() {
     try {
         Toast.show('Vérification des services Google...');
@@ -198,7 +198,7 @@ export default function LoginScreen({ navigation }) {
         console.error('Error signing in with Google:', error);
     }
 }
-*/
+
 
   
 /*
@@ -291,12 +291,12 @@ export default function LoginScreen({ navigation }) {
               style={{ width: '100%', height: 45, backgroundColor: '#f3f3f3', color: 'black',padding:8 }}
               />
           </View>
-          <TouchableOpacity style={{marginBottom:12}} onPress={()=>navigation.navigate("sub")}>
+          <TouchableOpacity style={{marginBottom:12}} onPress={()=>navigation.navigate('signup')}>
            <Text style={{alignSelf:'flex-end',color:'#1877F2',textDecorationLine:'underline'}}>Pas encore de compte</Text>
           </TouchableOpacity>
           <View style={{marginTop:32,flex:0.5}}>
-            <MyButton onPress={()=>navigation.navigate("sub")} title="Se connecter"/>
-            <TouchableOpacity onPress={() => {}} style={styles.googleButton}>
+            <MyButton onPress={EmailLogin} title="Se connecter"/>
+            <TouchableOpacity onPress={onGoogleButtonPress} style={styles.googleButton}>
                <Image style={styles.googleIcon} source={require('../assets/images/google.png')} />
                <Text style={{ marginLeft: 20, color: 'black', fontSize: 16 }}>Continuer avec Google</Text>
             </TouchableOpacity>
