@@ -334,39 +334,6 @@ const BookDetails = () => {
     }
   };
   
-  const handleReadPress = async () => {
-    setLoading(true);
-  
-    // Vérification dans AsyncStorage si le fichier a déjà été téléchargé
-    const storedPath = await AsyncStorage.getItem(`${book.id}_pdfPath`);
-  
-    let localPath;
-    
-    if (storedPath) {
-      // Si le fichier est trouvé en local
-      localPath = storedPath;
-      console.log('PDF already available locally:', localPath);
-    } else {
-      // Si le fichier n'est pas trouvé, on le télécharge
-      localPath = await downloadPDF(book.pdfUrl, `${book.name}.pdf`);
-      // Si le téléchargement a réussi, on enregistre le chemin dans AsyncStorage
-      if (localPath) {
-        await AsyncStorage.setItem(`${book.id}_pdfPath`, localPath);
-      }
-    }
-  
-    setLoading(false);
-  
-    if (localPath) {
-      setModalVisible(false);
-      navigation.navigate('pdfviewer', { pdfUrl: localPath });
-    } else {
-      console.error('Failed to download or retrieve PDF.');
-      Toast.show('livre indisponible');
-      navigation.navigate('BookDetails');
-    }
-  };
-
   const handleHearPress = async () => {
     setLoading(true);
   
@@ -938,7 +905,7 @@ const BookDetails = () => {
         shadowRadius: 3,
         elevation: 3, // Pour Android
       }} 
-      onPress={handleReadPress}
+      onPress={()=>navigation.navigate('pdfviewer',{ pdfUrl: book.pdfUrl })}
     >
       <Image
         source={require('../assets/images/livre-ouvert.png')}
